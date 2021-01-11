@@ -50,10 +50,12 @@ def test_varposargs_withva():
 
 
 def test_varposargs_withvakw():
-    args, kwargs = varposargs_capturing_function("val_arg1", "val_arg2", "varposarg1", "varposarg2",
-                                                 kwonlyarg="val_kwonlyarg")
+    args, kwargs = varposargs_capturing_function(
+        "val_arg1", "val_arg2", "varposarg1", "varposarg2", kwonlyarg="val_kwonlyarg"
+    )
     assert args == ("val_arg1", "val_arg2", "varposarg1", "varposarg2")
     assert kwargs == {"kwonlyarg": "val_kwonlyarg"}
+
 
 # Dealing with var keyword args
 def varkwargs_capturing_function(arg1, arg2="default_arg2", **kwargs):
@@ -77,6 +79,7 @@ def test_varkwargs_varkw():
     args, kwargs = varkwargs_capturing_function("val_arg1", "val_arg2", varkw1="val_varkw1", varkw2="val_varkw2")
     assert args == ()
     assert kwargs == {"arg1": "val_arg1", "arg2": "val_arg2", "varkw1": "val_varkw1", "varkw2": "val_varkw2"}
+
 
 # Omitting default values
 def nodefval_capturing_function(arg1, arg2="default_arg2", arg3="default_arg3"):

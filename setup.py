@@ -4,20 +4,20 @@ from distutils.core import setup
 
 
 def readme():
-    with open('README.md') as f:
+    with open("README.md") as f:
         return f.read()
 
 
 setup(
-    name='init-args-serializer',
-    version='1.1',
-    description='Python init-args based Serializer',
+    name="init-args-serializer",
+    version="1.1",
+    description="Python init-args based Serializer",
     long_description=readme(),
     long_description_content_type="text/markdown",
-    author='Felix Treede',
-    author_email='felixtreede@yahoo.de',
-    url='https://github.com/Xfel/init-args-serializer',
-    packages=['init_args_serializer'],
+    author="Felix Treede",
+    author_email="felixtreede@yahoo.de",
+    url="https://github.com/Xfel/init-args-serializer",
+    packages=["init_args_serializer"],
     setup_requires=["pytest-runner"],
     tests_require=["pytest"],
     classifiers=[
