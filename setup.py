@@ -10,7 +10,7 @@ def readme():
 
 setup(
     name='init-args-serializer',
-    version='1.0',
+    version='1.1',
     description='Python init-args based Serializer',
     long_description=readme(),
     long_description_content_type="text/markdown",
@@ -21,7 +21,7 @@ setup(
     setup_requires=["pytest-runner"],
     tests_require=["pytest"],
     classifiers=[
-        "Programming Language :: Python :: 3.5",
+        "Programming Language :: Python :: 3.7",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
