@@ -3,7 +3,7 @@ from collections.abc import Iterable
 from inspect import unwrap, signature, Parameter
 
 
-def capture_args(function, _locals, omit_defaulted_params=False):
+def capture_args(function, _locals, omit_defaulted_params: bool = False):
     """
     Extract the function's arguments from the local variable dict.
 
@@ -20,11 +20,12 @@ def capture_args(function, _locals, omit_defaulted_params=False):
     omit_defaulted_params=True to remove default values for all parameters, or pass a list of parameter names whose default
     values should be removed.
 
-    Usage example:
-    def foo(a1,a2=None,*va, kw1=2, **kw):
-        # Get passed arguments
-        args, kwargs = capture_args(foo, locals(), omit_defaulted_params=['kw1'])
-        # ...
+    .. code-block:: python
+
+        def foo(a1,a2=None,*va, kw1=2, **kw):
+            # Get passed arguments
+            args, kwargs = capture_args(foo, locals(), omit_defaulted_params=['kw1'])
+            # ...
 
     :param function: The function whose arguments to extract.
     :param _locals: Local variable dict as retured by builtin locals()
@@ -44,7 +45,11 @@ def capture_args(function, _locals, omit_defaulted_params=False):
         if p.kind == Parameter.POSITIONAL_ONLY:
             # Always use positional arguments here
             pos_args.append(_locals[p.name])
-        elif p.kind == Parameter.POSITIONAL_OR_KEYWORD or p.kind == Parameter.POSITIONAL_ONLY or p.kind == Parameter.KEYWORD_ONLY:
+        elif (
+            p.kind == Parameter.POSITIONAL_OR_KEYWORD
+            or p.kind == Parameter.POSITIONAL_ONLY
+            or p.kind == Parameter.KEYWORD_ONLY
+        ):
             # Add as keyword argument for now.
             kw_args[p.name] = _locals[p.name]
         elif p.kind == Parameter.VAR_POSITIONAL:
