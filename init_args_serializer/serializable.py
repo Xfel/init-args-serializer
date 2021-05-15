@@ -22,7 +22,7 @@ def _serializable_load(cls, args, kwargs, state):
 class Serializable:
     """
     Enables improved pickling support. Instead of storing the entire __dict__, the parameters passed to __init__ are
-    captured. During unpickleing, the captured parameters are used to create a new object instance.
+    captured. During unpickling, the captured parameters are used to create a new object instance.
 
     This behaviour is implemented using the __reduce__ hook. It is strongly discouraged to override the __reduce__
     method. If you need to pickle variables beyond the constructor parameters, you should use the regular __getstate__
@@ -70,8 +70,9 @@ class Serializable:
         """
         Override to restore persistent state from state_dict.
 
-        Care must be taken if this method is called during a copy operation. Since the init parameters might be different,
-        the stored state might not be appropriate any more. The copying parameter is set to true in that case.
+        Care must be taken if this method is called during a copy operation. Since the init parameters might be
+        different, the stored state might not be appropriate any more. The copying parameter is set to true in
+        that case.
 
         :param state_dict: dict filled with state entries
         :param copying: true if called by copy
