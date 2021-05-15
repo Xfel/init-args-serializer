@@ -1,4 +1,4 @@
-from inspect import signature, Parameter
+from inspect import Parameter, signature
 
 from .function_arg_capture import capture_args
 
@@ -7,7 +7,8 @@ def _serializable_load(cls, args, kwargs, state):
     """
     Create the new instance using args and kwargs, then apply the additional state. This is used by the __reduce__
     implementation.
-    :param fn: function to call
+
+    :param cls: class to create an insance of
     :param args: positional arguments
     :param kwargs: keyword arguments
     :param state: additional stored state
@@ -18,15 +19,14 @@ def _serializable_load(cls, args, kwargs, state):
     return obj
 
 
-
 class Serializable:
     """
     Enables improved pickling support. Instead of storing the entire __dict__, the parameters passed to __init__ are
     captured. During unpickleing, the captured parameters are used to create a new object instance.
 
-    This behaviour is implemented using the __reduce__ hook. It is strongly discouraged to override the __reduce__ method.
-    If you need to pickle variables beyond the constructor parameters, you should use the regular __getstate__ and __setstate__
-    methods.
+    This behaviour is implemented using the __reduce__ hook. It is strongly discouraged to override the __reduce__
+    method. If you need to pickle variables beyond the constructor parameters, you should use the regular __getstate__
+    and __setstate__ methods.
 
     The type also features a cloning mechanism, where some constructor keywords can be replaced with others.
     """
@@ -35,16 +35,16 @@ class Serializable:
         """
         Capture __init__ parameters from the given locals.
 
-        This function is expected to be called at the start of the init function. It uses
-        capture_args(self.__init__, _locals, **kwargs) to do so.
+        This function is expected to be called at the start of the init function.
+        It uses capture_args(self.__init__, _locals, **kwargs) to do so.
 
         :param _locals: locals() dict from the __init__ function
         :param kwargs: additional kwargs to pass to capture_args
         """
         # Make sure we only initialize once
-        if getattr(self, '_serializable_initialized', False):
+        if getattr(self, "_serializable_initialized", False):
             return
-        setattr(self, '_serializable_initialized', True)
+        setattr(self, "_serializable_initialized", True)
         self.__args, self.__kwargs = capture_args(self.__init__, _locals, **kwargs)
 
     def __reduce__(self):
@@ -122,5 +122,3 @@ class Serializable:
         copied_obj._set_state(state, copying=True)
 
         return copied_obj
-
-

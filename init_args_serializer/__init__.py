@@ -1,5 +1,3 @@
-
-
 from .function_arg_capture import capture_args
 from .serializable import Serializable
 

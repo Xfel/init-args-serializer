@@ -1,28 +1,33 @@
 #!/usr/bin/env python
 
-from distutils.core import setup
+from setuptools import setup, find_packages
 
 
 def readme():
-    with open('README.md') as f:
+    with open("README.md") as f:
         return f.read()
 
 
 setup(
-    name='init-args-serializer',
-    version='1.0',
-    description='Python init-args based Serializer',
+    name="init-args-serializer",
+    version="1.1",
+    description="Python serializer based on init-args",
     long_description=readme(),
     long_description_content_type="text/markdown",
-    author='Felix Treede',
-    author_email='felixtreede@yahoo.de',
-    url='https://github.com/Xfel/init-args-serializer',
-    packages=['init_args_serializer'],
-    setup_requires=["pytest-runner"],
-    tests_require=["pytest"],
+    url="https://github.com/Xfel/init-args-serializer",
+    author="Felix Treede",
+    author_email="felixtreede@yahoo.de",
+    packages=find_packages(include=["init_args_serializer"], exclude=["tests"]),
+    python_requires=">=3.7, <4",
+    install_requires=[],
+    extras_require={"test": ["pytest", "pytest-cov"]},
     classifiers=[
-        "Programming Language :: Python :: 3.5",
+        "Development Status :: 5 - Production/Stable",
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
+        "Programming Language :: Python :: 3.8",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3 :: Only",
     ],
+    keywords="serialization, serializer, init-args",
 )
