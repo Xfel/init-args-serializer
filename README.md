@@ -1,4 +1,5 @@
 # Python init-args based Serializer
+[![PyPI version](https://badge.fury.io/py/init-args-serializer.svg)](https://badge.fury.io/py/init-args-serializer)
 
 This package provides improved pickling support. Instead of storing the entire state dict `__dict__`, the parameters passed to the initializer `__init__()` are captured. 
 During unpickling, the captured parameters are used to create a new object instance.
