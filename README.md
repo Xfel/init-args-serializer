@@ -12,7 +12,7 @@ If you need to pickle variables beyond the constructor parameters, you should us
 ## Installation
 ```
 pip install init-args-serializer
-``
+```
 
 ## Usage
 ```
